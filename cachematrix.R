@@ -1,13 +1,15 @@
-makeCacheMatrix <- function (x=numeric()) {
-    m <- NULL
-    set <- function (y) {
-        x <<- y
-        m<<- NULL 
-    }
-    get <- function () x
-    setinv <- function(solve) m <<- solve
-    getinv <-function() m
-    list(set = set, get = get, 
-         setinv = setinv, 
-         getinv = getinv)    
+makeCacheMatrix <- function (x=numeric()) { 
+              #makes a vector of functions to be called using "get"
+  m <- NULL   # initializes result to null
+  set <- function (y) {
+            #gets the matrix            
+    x <<- y  #sends the matrix outside this function to x
+    m<<- NULL #resets result to null
+  }
+  get <- function () x   #this will call the appropriate function
+  setinv <- function(solve) m <<- solve   #stores inverse in solution
+  getinv <-function() m  #sends back the inverse
+  list(set = set, get = get, 
+       setinv = setinv, 
+       getinv = getinv)    
 }
